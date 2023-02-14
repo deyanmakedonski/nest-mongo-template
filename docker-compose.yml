@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  # Replica Set (required for Prisma Client)
+  mongo:
+    build: ./.docker/mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27018
+    ports:
+      - '27017:27017'
+      - '27018:27018'
+    volumes:
+      - show-server-db:/data/db
+volumes:
+  show-server-db:
